@@ -16,3 +16,4 @@ Some of the things I have learned here, about `MySQL` are:
     - Indexes
 - [My Chat With ChatGPT](https://chatgpt.com/share/35902f3a-8233-4edd-a6e4-d3a464a20842)
 
+- This project isn't complete yet.
