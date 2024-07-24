@@ -32,3 +32,4 @@ Some of the concepts I learn in this project are:
         - `Mongosh`
         - Mongo Shell Methods
         - Database Operations
+- I created an Alias called 'mongo' in my WSL that actually runs as 'mongosh'
