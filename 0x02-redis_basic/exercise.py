@@ -7,11 +7,10 @@ and as a cache also
 
 
 # Import statements
-from functools import wraps # For decorators
+from functools import wraps  # For decorators
 import redis
 import uuid
 from typing import Union, Callable
-
 
 
 # Defining the decorators above the Cache class
@@ -22,6 +21,7 @@ def count_calls(method: Callable) -> Callable:
     # Creating a __qualname__ dunder method for a key
     key = method.__qualname__
     # Creating a wrapped function
+
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         """
@@ -32,10 +32,12 @@ def count_calls(method: Callable) -> Callable:
     # Returning the wrapper Callable function
     return wrapper
 
+
 class Cache:
     """
     A cache class
     """
+
     def __init__(self):
         """
         Constructor method that stores
@@ -53,7 +55,12 @@ class Cache:
         self._redis.set(random_key, data)
         return random_key
 
-    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int, float]:
+    def get(self,
+            key: str,
+            fn: Callable = None) -> Union[str,
+                                          bytes,
+                                          int,
+                                          float]:
         """
         Method that takes a key argument
         and returns the data
