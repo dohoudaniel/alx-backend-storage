@@ -6,3 +6,5 @@ The concepts I learned in this directory are:
 - What Redis Is (`Remote Dictionary Server`)
 - Redis Commands
 - Using Redis With Python
+- Using Redis Classes in Python
+- The `redis` package
