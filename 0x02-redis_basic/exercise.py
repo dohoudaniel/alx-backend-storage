@@ -84,4 +84,8 @@ class Cache:
         with the correct conversion function
         """
         value = self._redis.get(data)
-        return int(value)
+        try:
+            new_value = int(value.decode("utf-8"))
+        except Exception:
+            new_value = 0
+        return new_value
