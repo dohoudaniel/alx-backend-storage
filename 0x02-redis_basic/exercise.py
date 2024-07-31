@@ -10,7 +10,7 @@ and as a cache also
 from functools import wraps  # For decorators
 import redis
 import uuid
-from typing import Union, Callable
+from typing import Union, Callable, Optional
 
 
 # Defining the decorators above the Cache class
@@ -57,17 +57,18 @@ class Cache:
 
     def get(self,
             key: str,
-            fn: Callable = None) -> Union[str,
+            fn: Optional[Callable] = None) -> Union[str,
                                           bytes,
                                           int,
                                           float]:
         """
         Method that takes a key argument
-        and returns the data
+        and returns the data in the desired
+        format
         """
         data = self._redis.get(key)
         if fn:
-            return fn(data)
+            data = fn(data)
         return data
 
     def get_str(self, data: bytes) -> str:
