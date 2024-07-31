@@ -30,6 +30,7 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """
     Store history of inputs and
@@ -41,7 +42,7 @@ def call_history(method: Callable) -> Callable:
         A wrapper for the decorated
         function call_history
         """
-        input = str(args) # Normalizing
+        input = str(args)  # Normalizing
         self._redis.rpush(method.__qualname__ + ":inputs", input)
         output = str(method(self, *args, **kwargs))
         self._redis.rpush(method.__qualname__ + ":outputs", output)
@@ -112,9 +113,9 @@ class Cache:
     def get(self,
             key: str,
             fn: Optional[Callable] = None) -> Union[str,
-                                          bytes,
-                                          int,
-                                          float]:
+                                                    bytes,
+                                                    int,
+                                                    float]:
         """
         Method that takes a key argument
         and returns the data in the desired
