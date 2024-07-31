@@ -18,7 +18,6 @@ def count_calls(method: Callable) -> Callable:
     """
     Returns a Callable object
     """
-    # Creating a __qualname__ dunder method for a key
     key = method.__qualname__
 
     @wraps(method)
@@ -71,7 +70,7 @@ class Cache:
             data = fn(data)
         return data
 
-    def get_str(self, data: bytes) -> str:
+    def get_str(self, data: str) -> str:
         """
         automatically parametrizes Cache.get
         with the correct
@@ -80,14 +79,14 @@ class Cache:
         value = self._redis.get(data)
         return value.decode('utf-8')
 
-    def get_int(self, data: bytes) -> int:
+    def get_int(self, data: str) -> int:
         """
         automatically parametrizes Cache.get
         with the correct conversion function
         """
         value = self._redis.get(data)
         try:
-            new_value = int(value.decode("utf-8"))
+            value = int(value.decode("utf-8"))
         except Exception:
-            new_value = 0
-        return new_value
+            value = 0
+        return value
